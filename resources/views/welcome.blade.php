@@ -62,6 +62,13 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .footer {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                padding: 1rem;
+              background-color: #efefef;
         </style>
     </head>
     <body>
@@ -74,8 +81,10 @@
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
                     @endif
-                </div>
+                    </div>
+                
             @endif
+            
 
             <div class="container">
                 <div class="row">
@@ -83,10 +92,23 @@
                         <div class="panel">
                             @component('components.who-is-logged-in')
                             @endcomponent
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            <center>
+    <div class="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>.
+    <br>
+        @if (App::getLocale() == 'th')
+        <a href="{{ route('lang.switch', 'th') }}"><img src="{{ asset('images/th_lang.png') }}" width="30" height="30"></a>
+        <a href="{{ route('lang.switch', 'en') }}"><img src="{{ asset('images/en_lang_deactive.png') }}" width="30" height="30"></a>
+        @elseif (App::getLocale() == 'en')
+        <a href="{{ route('lang.switch', 'th') }}"><img src="{{ asset('images/th_lang_deactive.png') }}" width="30" height="30"></a>
+        <a href="{{ route('lang.switch', 'en') }}"><img src="{{ asset('images/en_lang.png') }}" width="30" height="30"> </a>
+        @endif
+    </div>
+</center>
         </div>
     </body>
 </html>

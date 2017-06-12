@@ -12,6 +12,8 @@ class AdminLoginController extends Controller
     {
         //defining our middleware for this controller
         $this->middleware('guest:admin',['except' => ['logout']]);
+
+        //$this->middleware('guest:admin')->except('logout','logout');
     }
 
     //function to show admin login form

@@ -9,4 +9,5 @@ return [
     'forgot_password' => 'Forgot Your Password?',
     'login_nav' => 'Login',
     'register_nav' => 'Register',
+    'user_dashboard' => 'User Dashboard',
 ];

@@ -13,6 +13,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .footer {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 1rem;
+          background-color: #efefef;
+    }
+  text-align: center;
+    </style>
 </head>
 <body>
     <div id="app">
@@ -68,11 +79,17 @@
                             </li>
                         @endif
                     </ul>
+
+                    
                 </div>
             </div>
         </nav>
 
         @yield('content')
+
+        <footer class="row">
+            @include('includes.footer')
+        </footer>
     </div>
 
     <!-- Scripts -->
