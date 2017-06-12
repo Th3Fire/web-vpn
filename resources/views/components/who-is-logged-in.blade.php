@@ -1,3 +1,4 @@
+<font color="red"><strong>
 @if(Auth::guard('web')->check())
     <p class="text-success">
         You are logged in as <strong>User</strong>
@@ -17,4 +18,5 @@
         You are logged out as <strong>Admin</strong>
     </p>
 @endif
-
+</strong>
+</font>
