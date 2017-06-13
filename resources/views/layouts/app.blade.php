@@ -12,20 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <style type="text/css">
-        .footer {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          padding: 1rem;
-          background-color: #efefef;
-    }
-  text-align: center;
-    </style>
+    
 </head>
 <body>
+    <!-- Animate CSS -->
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -51,48 +43,71 @@
                         &nbsp;
                     </ul>
 
+                    <!-- Right Side Of Navbar Change Language-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @if (App::getLocale() == 'th')
+                                <img src="{{ asset('images/th_lang.png') }}" width="25" height="25">
+                                @else
+                                <img src="{{ asset('images/en_lang.png') }}" width="25" height="25">
+                                @endif
+                                <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu animated bounceInDown" role="menu">
+                                @foreach (Config::get('languages'); as $key => $lang)
+                                <li class="{{ App::getLocale() == $key ? 'active' : '' }} ">
+                                    <a href="{{ route('lang.switch', $key) }}">{{$lang}}</a>
+                                </li>
+                                @endforeach
+                                
+                            </ul>
+                        </li>
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('login') }}">{{ trans('lang.login_label') }}</a></li>
+                        <li><a href="{{ route('register') }}">{{ trans('lang.register_label') }}</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ trans('lang.logout_label') }}
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
-                        @endif
-                    </ul>
-
-                    
-                </div>
+                        </ul>
+                    </li>
+                    @endif
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        @yield('content')
+    @yield('content')
 
-        <footer class="row">
-            @include('includes.footer')
-        </footer>
-    </div>
+    <footer>
+        
+    </footer>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 </body>
 </html>

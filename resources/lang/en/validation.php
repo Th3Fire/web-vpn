@@ -88,6 +88,9 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
+    // Custom Validate
+    'required_captcha'     => 'The captcha is required.',    
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -100,8 +103,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'confirmed' => 'Password confirmation does not match.',
+        ],
+        'g-recaptcha-response' => [
+            'required' => 'The captcha is required.',
         ],
     ],
 
@@ -117,7 +123,7 @@ return [
     */
 
     'attributes' => [
-        
+       
     ],
 
 ];

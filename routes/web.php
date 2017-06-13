@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,25 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-//Localization
-Route::get('changeLanguage/{locale}', function ($locale) {
-    App::setLocale($locale);
-    error_log('Some message here.');
-});
-
-//test 
-Route::get('/hello/{value}', function ($value) {
-    App::setLocale($value);
-    error_log('Some message here.');
-    if (App::isLocale('en')) {
-        return view('/test/test', ['name' => 'English']);
-    }else if (App::isLocale('th')) {
-        return view('/test/test', ['name' => 'Thai']);
-    }
-    
+    $users = User::orderBy('created_at', 'asc')->get();
+    return view('welcome', [
+            'users' => $users
+        ]);
 });
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);

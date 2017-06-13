@@ -87,6 +87,9 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    
+    // Custom Validate
+    'required_captcha'     => 'โปรดยืนยัน ฉันไม่ใช่โปรแกรมอัตโนมัติ',  
 
     /*
     |--------------------------------------------------------------------------
@@ -100,8 +103,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'confirmed' => 'รหัสผ่านไม่ตรงกัน',
+        ],
+        'g-recaptcha-response' => [
+            'required' => 'โปรดยืนยันว่าคุณไม่ใช่โปรแกรมอัตโนมัติ',
         ],
     ],
 
