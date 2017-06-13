@@ -47,12 +47,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        // return Validator::make($data, [
+        //     'username' => 'required|string|max:100|unique:users',
+        //     'name' => 'required|string|max:100',
+        //     'email' => 'required|string|email|max:100|unique:users',
+        //     'password' => 'required|string|min:6|confirmed',
+        //     'g-recaptcha-response' => 'required|captcha',
+        //     'captcha' => 'required|min:1'
+        // ]);
+
+        $validator = Validator::make($data, [
             'username' => 'required|string|max:100|unique:users',
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
+
+        return $validator;
     }
 
     /**
